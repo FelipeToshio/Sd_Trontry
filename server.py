@@ -3,7 +3,7 @@ import Pyro4
 @Pyro4.expose
 class Hello(object):
     def say_hello(self):
-        return 'Hello World'
+        return 'Teste'
         
 daemon = Pyro4.Daemon()             #cria um daemon do Pyro
 ns = Pyro4.locateNS()               #procura o servidor DNS
