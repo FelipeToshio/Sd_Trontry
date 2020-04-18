@@ -98,23 +98,20 @@ def intersect(A, B, C, D):
     """ Return true if line segments AB and CD intersect """
     return ccw(A, C, D) != ccw(B, C, D) and ccw(A, B, C) != ccw(A, B, D)
 
-player = Turtle('circle')
-player.shapesize(6 / 20)
-player.color('red')
-player.pensize(6)
-player.speed('fastest')
-player.penup()
-player.setposition(100, 100)
-player.pendown()
 
-enemy = Turtle('circle')
-enemy.shapesize(6 / 20)
-enemy.color('blue')
-enemy.pensize(6)
-enemy.speed('fastest')
-enemy.penup()
-enemy.setposition(-300, -300)
-enemy.pendown()
+def constructor(color, pos_x, pos_y ):
+    player = Turtle('circle')
+    player.shapesize(6 / 20)
+    player.color(color) #red
+    player.pensize(6)
+    player.speed('fastest')
+    player.penup()
+    player.setposition(pos_x, pos_y)#100, 100
+    player.pendown()
+    return player
+
+player = constructor('red', 100, 100)
+enemy = constructor('blue', -300, -300)
 
 players = [[player, [player.position()]], [enemy, [enemy.position()]]]
 PLAYER, ENEMY = 0, 1
