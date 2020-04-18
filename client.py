@@ -5,3 +5,5 @@ Hello = Pyro4.Proxy("PYRONAME:example.hello")
 
 #executa o metodo do Objeto Distribuido
 print(Hello.say_hello())
+
+#test
