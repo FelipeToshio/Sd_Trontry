@@ -1,0 +1,83 @@
+from turtle import Turtle, Screen
+
+screen = Screen()
+screen.bgcolor('black')
+
+def up(who):
+    global previousMove
+
+    turtle, path = PLAYER
+    turtle.setheading(90)
+
+    if previousMove != 'up':
+        path.append(turtle.position())
+    previousMove = 'up'
+
+    turtle.fd(15)
+
+   
+
+def right(who):
+    global previousMove
+
+    turtle, path = PLAYER
+    turtle.setheading(0)
+
+    if previousMove != 'right':
+        path.append(turtle.position())
+    previousMove = 'right'
+
+    turtle.fd(15)
+
+    
+
+def left(who):
+    global previousMove
+
+    turtle, path = PLAYER
+    turtle.setheading(180)
+
+    if previousMove != 'left':
+        path.append(turtle.position())
+    previousMove = 'left'
+
+    turtle.fd(15)
+
+   
+
+def down(who):
+    global previousMove
+
+    turtle, path = PLAYER
+    turtle.setheading(270)
+
+    if previousMove != 'down':
+        path.append(turtle.position())
+    previousMove = 'down'
+
+    turtle.fd(15)
+
+player = Turtle('circle')
+player.shapesize(6 / 20)
+player.color('red')
+player.pensize(6)
+player.speed('fastest')
+player.penup()
+player.setposition(100, 100)
+player.pendown()
+
+
+PLAYER = [player, [player.position()]]
+TURTLE, PATH = 0, 1
+
+previousMove = None  # consolidate moves in same direction into single line segment
+
+screen.onkey(lambda: up(PLAYER), 'Up')
+screen.onkey(lambda: left(PLAYER), 'Left')
+screen.onkey(lambda: right(PLAYER), 'Right')
+screen.onkey(lambda: down(PLAYER), 'Down')
+
+
+screen.listen()
+
+screen.mainloop()
