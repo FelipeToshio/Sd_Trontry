@@ -2,7 +2,7 @@ import socket
 from _thread import *
 import sys
 
-server = "192.168.0.51"
+server = "ipv4"
 port = 5555
 
 #**************************Criando o servidor*******************
