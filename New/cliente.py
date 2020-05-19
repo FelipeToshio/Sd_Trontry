@@ -1,7 +1,7 @@
 import pygame
 from network import Network
 
-#********************Cria a tela*********************************
+#************************* Cria a tela ******************************
 width = 500
 height = 500
 
@@ -10,7 +10,7 @@ pygame.display.set_caption("Cliente")
 
 clientNumber = 0
 
-#***********************Criando Jogador****************************
+#*********************** Criando Jogador ****************************
 
 class Player():
     def __init__(self, x, y, width, height, color):
@@ -45,7 +45,7 @@ class Player():
     def update(self):
         self.rect = (self.x, self.y, self.width, self.height)
 
-#*******************************configurando as posições***********
+#******************** Configurando as posições *********************
 def read_pos(str):
     str = str.split(",")
     return int(str[0]), int(str[1])
@@ -54,7 +54,7 @@ def read_pos(str):
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
-#***********************Atualiza a tela ***************************
+#*********************** Atualiza a tela ****************************
 
 def redrawWindow(win,player, player2):
     win.fill((255,255,255))
@@ -66,8 +66,8 @@ def main():
     run = True
     n = Network()
     startPos = read_pos(n.getPos())
-    p = Player(startPos[0],startPos[1],100,100,(0,255,0))
-    p2 = Player(0,0,100,100,(255,0,0))
+    p = Player(startPos[0],startPos[1],20,20,(0,255,0)) #PLAYER 1
+    p2 = Player(0,0,20,20,(255,0,0)) #PLAYER 2
     clock = pygame.time.Clock()
 
     while run:

@@ -2,10 +2,10 @@ import socket
 from _thread import *
 import sys
 
-server = "ipv4"
+server = "192.168.15.10"
 port = 5555
 
-#**************************Criando o servidor*******************
+#******************* Criando o servidor **************************
 s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
@@ -13,11 +13,11 @@ try:
 except socket.error as e:
     str(e)
 
-#***********quantas pessoas podem se conectar******************
+#*********** Quantas pessoas podem se conectar *******************
 s.listen(2)
 print("Esperando conexão, servidor conectado")
 
-#*******************************configurando as posições***********
+#***************** Configurando as posições **********************
 def read_pos(str):
     str = str.split(",")
     return int(str[0]), int(str[1])
@@ -26,10 +26,10 @@ def read_pos(str):
 def make_pos(tup):
     return str(tup[0]) + "," + str(tup[1])
 
-#*************************posição do cliente*******************
-pos = [(0,0), (100,100)]
+#******************** Posição do cliente *************************
+pos = [(70,70), (430,430)]
 
-#********************************thread************************
+#************************** Thread *******************************
 def threaded_client(conn, player):
     conn.send(str.encode(make_pos(pos[player])))
     reply = ""
