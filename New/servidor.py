@@ -1,8 +1,9 @@
 import socket
 from _thread import *
-import sys
+from player import Player
+import pickle
 
-server = "192.168.15.10"
+server = "10.11.168.1"
 port = 5555
 
 #******************* Criando o servidor **************************
@@ -14,43 +15,38 @@ except socket.error as e:
     str(e)
 
 #*********** Quantas pessoas podem se conectar *******************
-s.listen(2)
+s.listen(4)
 print("Esperando conexão, servidor conectado")
 
-#***************** Configurando as posições **********************
-def read_pos(str):
-    str = str.split(",")
-    return int(str[0]), int(str[1])
-
-
-def make_pos(tup):
-    return str(tup[0]) + "," + str(tup[1])
-
 #******************** Posição do cliente *************************
-pos = [(70,70), (430,430)]
+players = [Player(50,50,50,50,(255,0,0)), Player(400,400, 50,50, (0,0,255)), Player(50,400, 50,50, (0,255,0)), Player(400,50, 50,50, (0,255,255))]
 
 #************************** Thread *******************************
 def threaded_client(conn, player):
-    conn.send(str.encode(make_pos(pos[player])))
+    conn.send(pickle.dumps(players[player]))
     reply = ""
     while True:
         try:
-            data = read_pos(conn.recv(2048).decode())
-            pos[player] = data
+            data = pickle.loads(conn.recv(4096))
+            players[player] = data
 
             if not data:
                 print("Disconnected")
                 break
             else:
                 if player == 1:
-                    reply = pos[0]
+                    reply = players[0]
+                elif player == 2:
+                    reply = players[1]
+                elif player == 3:
+                    reply = players[2]
                 else:
-                    reply = pos[1]
+                    reply = players[3]
 
-                print("Received: ", data)
-                print("Sending : ", reply)
+               # print("Received: ", data)
+               # print("Sending : ", reply)
 
-            conn.sendall(str.encode(make_pos(reply)))
+            conn.sendall(pickle.dumps(reply))
         except:
             break
 
@@ -59,7 +55,7 @@ def threaded_client(conn, player):
 
 currentPlayer = 0
 
-#****************************Procurando conexão*****************
+#******************** Procurando conexão ************************
 while True:
     conn, addr = s.accept()
     print("Connected to:", addr)
