@@ -3,7 +3,7 @@ from _thread import *
 from player import Player
 import pickle
 
-server = "10.11.168.1"
+server = "192.168.15.10"
 port = 5555
 
 #******************* Criando o servidor **************************
@@ -19,7 +19,7 @@ s.listen(4)
 print("Esperando conexão, servidor conectado")
 
 #******************** Posição do cliente *************************
-players = [Player(50,50,50,50,(255,0,0)), Player(400,400, 50,50, (0,0,255)), Player(50,400, 50,50, (0,255,0)), Player(400,50, 50,50, (0,255,255))]
+players = [Player(50,50,15,15,(255,0,0)), Player(400,400, 15,15, (0,0,255)), Player(50,400, 15,15, (0,255,0)), Player(400,50, 15,15, (0,255,255))]
 
 #************************** Thread *******************************
 def threaded_client(conn, player):
