@@ -12,7 +12,7 @@ pygame.display.set_caption("Cliente")
 #*********************** Atualiza a tela ****************************
 
 def redrawWindow(win, player, player2, player3, player4):
-    win.fill((255,255,255))
+    #win.fill((255,255,255))
     player.draw(win)
     player2.draw(win)
     player3.draw(win)
